@@ -21,8 +21,9 @@
   </div>
 </template>
 
-<script setup>
-import {mapState} from 'pinia';
+<script lang="ts" setup>
+import { mapState } from 'pinia';
+//@ts-ignore
 import { useStore } from '@/store'
 import { reactive,computed,onMounted } from 'vue'
 const navList= reactive(

@@ -45,7 +45,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive } from "vue";
 const footerHeight = ref("");
 const curWidth = ref("");
