@@ -55,36 +55,36 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "IndexService",
-  data() {
-    return {
-      serviceList: [
-        {
-          description: "大数据",
-          path: "../../src/assets/img/index/bigData.webp",
-        },
-        {
-          description: "智能多媒体",
-          path: "../../src/assets/img/index/media.webp",
-        },
-        {
-          description: "互联网",
-          path: "../../src/assets/img/index/internet.webp",
-        },
-        {
-          description: "云计算",
-          path: "../../src/assets/img/index/cloud.webp",
-        },
-      ],
-      serviceIdeaInfo: {
-        ideaTitle: "服务理念",
-        ideaSubtitle: "SERVICE IDEA",
-        ideaDesc:
-          "专注品牌事业十余年，是一家兼具国际视野、创新动力、全方位跨平台的品牌咨询与设计整合服务公司。公司业务涉及大数据、智能多媒体、物联网。",
-      },
-      serviceIdeaImg: [
+<script lang="ts" setup>
+import { reactive } from "vue";
+const serviceList = $ref([
+  {
+    description: "大数据",
+    path: "../../src/assets/img/index/bigData.webp",
+  },
+  {
+    description: "智能多媒体",
+    path: "../../src/assets/img/index/media.webp",
+  },
+  {
+    description: "互联网",
+    path: "../../src/assets/img/index/internet.webp",
+  },
+  {
+    description: "云计算",
+    path: "../../src/assets/img/index/cloud.webp",
+  },
+]);
+
+const serviceIdeaInfo = $ref({
+  ideaTitle: "服务理念",
+  ideaSubtitle: "SERVICE IDEA",
+  ideaDesc:
+    "专注品牌事业十余年，是一家兼具国际视野、创新动力、全方位跨平台的品牌咨询与设计整合服务公司。公司业务涉及大数据、智能多媒体、物联网。",
+});
+
+const serviceIdeaImg=$ref(
+  [
         {
           name: "lefImg",
           path: "../../src/assets/img/index/service1.png",
@@ -93,8 +93,11 @@ export default {
           name: "rightImg",
           path: "../../src/assets/img/index/service2.png",
         },
-      ],
-      caseList: [
+      ]
+)
+
+const caseList=$ref(
+  [
         {
           desc: "私家智能定制APP",
           path: "../../src/assets/img/index/app1.jpg",
@@ -111,12 +114,14 @@ export default {
           desc: "公司业绩统计管理系统",
           path: "../../src/assets/img/index/system2.jpg",
         },
-      ],
-      percentage: "50",
-    };
-  },
-};
+      ]
+)
+
+const percentage=$ref('50')
+
+
 </script>
+
 
 <style lang="scss" scoped>
 .wrap-block {

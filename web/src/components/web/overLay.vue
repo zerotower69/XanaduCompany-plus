@@ -9,10 +9,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "overLay",
-};
+<script lang="ts" setup>
 </script>
 
 <style lang="scss" scoped>

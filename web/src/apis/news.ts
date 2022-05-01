@@ -15,7 +15,7 @@ const useNewsApi = () => {
  * @param params 
  * @returns 
  */
-const apiGetHotNews = (params:any) => {
+const apiGetHotNews = () => {
      return request.get('/web/hotnews');
 }
 

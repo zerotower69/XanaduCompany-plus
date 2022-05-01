@@ -37,7 +37,9 @@
                 <img :src="item.qr" alt="" />
                 <h2>{{ item.info }}</h2>
               </div>
-              <img :src="item.path" :alt="item.name" slot="reference" />
+              <template v-slot:reference>
+                <img :src="item.path" :alt="item.name"/>
+              </template>
             </el-popover>
           </div>
         </div>
@@ -47,10 +49,10 @@
 </template>
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-const footerHeight = ref("");
-const curWidth = ref("");
-const logo_url = ref("@/assets/img/index/logoColor.png");
-const contact_way = reactive([
+const footerHeight = $ref("");
+const curWidth = $ref("");
+const logo_url = $ref("@/assets/img/index/logoColor.png");
+const contact_way = $ref([
   {
     name: "媒体问询",
     email: "aerowangue@126.com",
@@ -68,7 +70,7 @@ const contact_way = reactive([
     email: "aerowangue@126.com",
   },
 ]);
-const focus_icon = reactive([
+const focus_icon = $ref([
   {
     name: "weibo",
     path: "../../../src/assets/img/focus/weibo.png",

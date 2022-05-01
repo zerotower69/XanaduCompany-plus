@@ -1,13 +1,7 @@
 <template>
-<router-view></router-view>
+  <router-view></router-view>
 </template>
 
-<script>
-export default {
-  name: 'Home'
-}
-</script>
+<script setup lang="ts"></script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -22,13 +22,14 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Banner",
-  props: ["BannerHeight"],
-  data() {
-    return {
-      imgList: [
+<script lang="ts" setup>
+import {defineProps} from 'vue'
+defineProps<{
+  BannerHeight:number
+}>();
+
+const imgList=$ref(
+[
         {
           id: 0,
           imgUrl:
@@ -54,10 +55,9 @@ export default {
           imgUrl:
             "https://cdn.jsdelivr.net/gh/xanaduwang/aerowang/img/20210604161834.jpg",
         },
-      ],
-    };
-  },
-};
+      ]
+)
+
 </script>
 
 <style lang="scss" scoped>

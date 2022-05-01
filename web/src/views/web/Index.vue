@@ -5,7 +5,12 @@
       <Banner :BannerHeight="bannerHeight"></Banner>
       <over-lay></over-lay>
       <scroll-hint
-        v-scroll-to="{ element: '.wrap-block', duration: 300, easing: 'ease', offset: 1 }"
+        v-scroll-to="{
+          element: '.wrap-block',
+          duration: 300,
+          easing: 'ease',
+          offset: 1,
+        }"
       ></scroll-hint>
     </div>
     <IndexService></IndexService>
@@ -13,9 +18,9 @@
   </div>
 </template>
 
-<script setup>
-import { ref, reactive,onMounted,onBeforeMount} from "vue";
-import { useStore } from "@/store";
+<script setup lang="ts">
+import { onMounted, onBeforeMount } from "vue";
+import { useStore } from "../../store";
 import Header from "@/components/web/layout/Header.vue";
 import Footer from "@/components/web/layout/Footer.vue";
 import Banner from "@/components/web/Banner.vue";
@@ -31,7 +36,9 @@ const setBannerHeight = () => {
 //计算scrollTop
 const scrollHandle = () => {
   scrollTop =
-    document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    document.documentElement.scrollTop ||
+    window.pageYOffset ||
+    document.body.scrollTop;
   if (scrollTop <= bannerHeight - 35) {
     //显示头部logo
     main.setHeaderLogo(true);
@@ -48,17 +55,17 @@ const scrollHandle = () => {
   scrollStep >= 0 ? main.setHeaderShow(true) : main.setHeaderShow(false);
 };
 
-onMounted(()=>{
-    //页面创建时执行一次getHeight
-    window.addEventListener('resize',setBannerHeight);
-    setBannerHeight();
-    window.addEventListener('scroll',scrollHandle);
-})
+onMounted(() => {
+  //页面创建时执行一次getHeight
+  window.addEventListener("resize", setBannerHeight);
+  setBannerHeight();
+  window.addEventListener("scroll", scrollHandle);
+});
 
-onBeforeMount(()=>{
-    window.removeEventListener('scroll',scrollHandle);
-    window.removeEventListener('resize',setBannerHeight)
-})
+onBeforeMount(() => {
+  window.removeEventListener("scroll", scrollHandle);
+  window.removeEventListener("resize", setBannerHeight);
+});
 
 let index_header = $ref("");
 let bannerHeight = $ref(491);
