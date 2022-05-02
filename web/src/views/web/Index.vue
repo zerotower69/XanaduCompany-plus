@@ -20,17 +20,20 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeMount } from "vue";
-import { useStore } from "../../store";
+// import { useStore } from "../../store";
+import { useStore } from "vuex";
 import Header from "@/components/web/layout/Header.vue";
 import Footer from "@/components/web/layout/Footer.vue";
 import Banner from "@/components/web/Banner.vue";
 import overLay from "@/components/web/overLay.vue";
 import scrollHint from "@/components/web/scrollHint.vue";
 import IndexService from "@/components/web/IndexService.vue";
-const main = useStore();
+import store from "../../store";
 
 const setBannerHeight = () => {
-  main.$patch({ bannerHeight: bannerHeight });
+  bannerHeight = window.innerHeight;
+  store.commit("setBannerHeight", bannerHeight);
+  // main.$patch({ bannerHeight: bannerHeight });
 };
 
 //计算scrollTop
@@ -40,19 +43,24 @@ const scrollHandle = () => {
     window.pageYOffset ||
     document.body.scrollTop;
   if (scrollTop <= bannerHeight - 35) {
+    // console.log("=====>", store);
     //显示头部logo
-    main.setHeaderLogo(true);
-    main.setShadowActive(false);
-    main.setNavDarkActive(false);
+    store.commit("setHeaderLogo", true);
+    store.commit("setShadowActive", false);
+    store.commit("setNavDarkActive", false);
   } else {
-    main.setHeaderLogo(false);
-    main.setShadowActive(true);
-    main.setNavDarkActive(true);
+    store.commit("setHeaderLogo", false);
+    store.commit("setShadowActive", true);
+    store.commit("setNavDarkActive", true);
   }
   //滚动条滚动的距离
   const scrollStep = scrollTop - oldScrollTop;
   oldScrollTop = scrollTop;
-  scrollStep >= 0 ? main.setHeaderShow(true) : main.setHeaderShow(false);
+  scrollStep >= 0
+    ? store.commit("setHeaderShow", true)
+    : store.commit("setHeaderShow", false);
+
+  // console.log(store.state.headerShow);
 };
 
 onMounted(() => {
@@ -68,7 +76,7 @@ onBeforeMount(() => {
 });
 
 let index_header = $ref("");
-let bannerHeight = $ref(491);
+let bannerHeight = $ref(0);
 let scrollTop = $ref(0);
 let oldScrollTop = $ref(0);
 </script>

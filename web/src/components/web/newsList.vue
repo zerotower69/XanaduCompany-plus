@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { useStore, mapActions } from "vuex";
 import { defineProps } from "vue";
 defineProps<{
   items: Array<any>;
@@ -29,6 +30,7 @@ let currentPage = $ref(1);
 
 const setArticlePath = (path: string) => {
   console.log("path===>", path);
-  //TODO:store set article path
+  const store = useStore();
+  store.dispatch("setArticlePath", path);
 };
 </script>

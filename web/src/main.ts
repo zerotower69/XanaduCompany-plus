@@ -1,5 +1,6 @@
 import { createApp } from "vue";
-import { createPinia } from 'pinia';
+// import { createPinia } from 'pinia';
+// import { } from 'vuex'
 import App from "./App.vue";
 import ElementPlus from "element-plus";
 import 'element-plus/dist/index.css'
@@ -7,10 +8,11 @@ import VueScrollTo from "vue-scrollto";
 import "./assets/style/common.css";
 import "./assets/font/iconfont";
 import router from './router'
+import store from './store'
 
 const app = createApp(App);
 
-app.use(createPinia())
+app.use(store)
 app.use(VueScrollTo, {
   container: "body",
   duration: 500,

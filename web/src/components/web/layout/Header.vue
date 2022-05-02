@@ -1,17 +1,27 @@
 <template>
-  <div class = "header" :class = "{header_show: headerShow, shadow: headerShadowActive }">
-    <div class = "header_container">
-      <div class = "header_content">
-        <div class = "logo">
-          <router-link to = "/">
-            <img src = "@/assets/img/index/logo.png" alt = "logo" v-if = "headerLogoShow===true"/>
-            <img src = "@/assets/img/index/logoColor.png" alt = "logo" v-else/>
+  <div
+    class="header"
+    :class="{ header_show: headerShow, shadow: headerShadowActive }"
+  >
+    <div class="header_container">
+      <div class="header_content">
+        <div class="logo">
+          <router-link to="/">
+            <img
+              src="@/assets/img/index/logo.png"
+              alt="logo"
+              v-if="headerLogoShow === true"
+            />
+            <img src="@/assets/img/index/logoColor.png" alt="logo" v-else />
           </router-link>
         </div>
-        <div class = "menu-wrapper">
-          <div class = "menu-item" v-for = "(item,index) in navList" :key = "index">
-            <h2 class = "menu-item-link">
-              <router-link :to = "item.path" ><span :class="{a_text_dark: navDarkActive}">{{ item.title }}</span>
+        <div class="menu-wrapper">
+          <div class="menu-item" v-for="(item, index) in navList" :key="index">
+            <h2 class="menu-item-link">
+              <router-link :to="item.path"
+                ><span :class="{ a_text_dark: navDarkActive }">{{
+                  item.title
+                }}</span>
               </router-link>
             </h2>
           </div>
@@ -22,56 +32,56 @@
 </template>
 
 <script lang="ts" setup>
-import { mapState } from 'pinia';
+import { useStore, mapState } from "vuex";
+import { useMapState } from "../../../store";
+import { reactive, computed, onMounted } from "vue";
+const navList = reactive([
+  {
+    title: "首页",
+    path: "/index",
+  },
+  {
+    title: "新闻中心",
+    path: "/news",
+  },
+  {
+    title: "产品与服务",
+    path: "/product",
+  },
+  {
+    title: "人才招聘",
+    path: "/job",
+  },
+  // {
+  //   title: '客户服务',
+  //   path: '/customer'
+  // },
+  {
+    title: "登录",
+    path: "/login",
+  },
+]);
 //@ts-ignore
-import { useStore } from '@/store'
-import { reactive,computed,onMounted } from 'vue'
-const navList= reactive(
-    [
-
-        {
-          title: '首页',
-          path: '/index'
-        },
-        {
-          title: '新闻中心',
-          path: '/news'
-        },
-        {
-          title: '产品与服务',
-          path: '/product'
-        },
-        {
-          title: '人才招聘',
-          path: '/job'
-        },
-        // {
-        //   title: '客户服务',
-        //   path: '/customer'
-        // },
-        {
-          title: '登录',
-          path: '/login'
-        }
-      ]);
-const mainStore=useStore();
-const headerShadowActive=computed(()=>mainStore.headerShadowActive);
-const headerShow=computed(()=>mainStore.headerShow);
-const headerLogoShow=computed(()=>mainStore.headerLogoShow);
-const navDarkActive=computed(()=>mainStore.navDarkActive);
-
+const { headerShadowActive, headerShow, headerLogoShow, navDarkActive } =
+  useMapState([
+    "headerShadowActive",
+    "headerShow",
+    "headerLogoShow",
+    "navDarkActive",
+  ]);
+onMounted(() => {});
 </script>
 
 <style lang="scss" scoped>
 $nav_active_color: #3370ff;
-h2{
+h2 {
   margin: 0;
 }
 .header_show {
   transform: translateY(-62px);
 }
-.a_text_dark{
-  color: rgba(0, 0, 0, .8);
+.a_text_dark {
+  color: rgba(0, 0, 0, 0.8);
 }
 .header {
   width: 100%;
@@ -82,7 +92,7 @@ h2{
 
   position: fixed;
   z-index: 999;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
   //color: rgba(255, 255, 255, 1) !important;
   //transition: all 0.3s ease;
   .header_container {
@@ -91,7 +101,7 @@ h2{
 }
 
 .shadow {
-  background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(8px);
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
 }
@@ -154,7 +164,7 @@ h2{
     a {
       display: inline-block;
       color: rgba(255, 255, 255, 1);
-      transition: color .3s;
+      transition: color 0.3s;
 
       :hover {
         color: $nav_active_color;
@@ -184,7 +194,7 @@ h2{
 }
 
 .nav_text_dark {
-  color: rgba(0, 0, 0, .8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 @media only screen and (max-width: 991px) {
