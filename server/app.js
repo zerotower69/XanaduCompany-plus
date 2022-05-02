@@ -2,6 +2,7 @@ const Koa = require('koa')
 const KStatic = require('koa-static') // 静态资源中间件
 const Logger = require('koa-logger') // 日志中间件
 const path = require('path')
+// const cors=require('@koa/cors');
 const moment = require('moment') // 时间格式化插件
 // const bodyParser = require('koa-bodyparser') // post请求中间件
 const cors = require('koa2-cors')

@@ -3,7 +3,7 @@ import axios from 'axios'
 import type { AxiosRequestConfig } from 'axios'
 const request =axios.create({
     timeout:10000,//10s
-    baseURL:'http://localhost:3000'
+    baseURL:'http://localhost:3000/api/v1'
 })
     
 request.interceptors.request.use((config:AxiosRequestConfig)=>{

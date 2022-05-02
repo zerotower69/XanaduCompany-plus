@@ -30,7 +30,7 @@ export const useMapState = (getKeys:string[]) => {
     return storeState
 }
 
-export default createStore<rootState>({
+const store=createStore<rootState>({
     state: {
         BannerHeight: 0,
         headerShadowActive:false,
@@ -76,3 +76,4 @@ export default createStore<rootState>({
         
     }
 }) 
+export default store
